@@ -30,6 +30,11 @@ def myfunction(event, context):
         ip_remote = 'ERROR: No connection to `https://ip.anexia.at`'
 
     try:
+        resolve = open('/etc/resolv.conf', 'r').read()
+    except Exception:
+        resolve = 'ERROR: Could not read `/etc/resolv.conf`'
+
+    try:
         hosts = open('/etc/hosts', 'r').read()
     except Exception:
         hosts = 'ERROR: Could not read `/etc/hosts`'
@@ -48,6 +53,7 @@ def myfunction(event, context):
             'context': context,
             'ip_local': ip_local,
             'ip_remote': ip_remote,
+            'resolve': resolve,
             'hosts': hosts,
             'environment': dict(os.environ),
         },
