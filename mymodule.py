@@ -29,6 +29,11 @@ def myfunction(event, context):
     except Exception:
         ip_remote = 'ERROR: No connection to `https://ip.anexia.at`'
 
+    try:
+        hosts = open('/etc/hosts', 'r').read()
+    except Exception:
+        hosts = 'ERROR: Could not read `/etc/hosts`'
+
     return {
         'status': 202,
         'response_headers': {
@@ -43,6 +48,7 @@ def myfunction(event, context):
             'context': context,
             'ip_local': ip_local,
             'ip_remote': ip_remote,
+            'hosts': hosts,
             'environment': dict(os.environ),
         },
     }
