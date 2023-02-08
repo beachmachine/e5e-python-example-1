@@ -23,11 +23,11 @@ def myfunction(event, context):
         ip_local = 'ERROR: Cannot call `ip addr`'
 
     try:
-        ip_remote = requests.get('https://ip.anexia.at', headers={
+        ip_remote = requests.get('https://ip.anexia.com', headers={
             'user-agent': 'curl/7.68.0',
         }).text
     except Exception:
-        ip_remote = 'ERROR: No connection to `https://ip.anexia.at`'
+        ip_remote = 'ERROR: No connection to `https://ip.anexia.com`'
 
     try:
         resolve = open('/etc/resolv.conf', 'r').read()
