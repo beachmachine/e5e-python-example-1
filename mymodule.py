@@ -59,7 +59,7 @@ def myfunction(event, context):
         },
     }
     requests.post("https://webhook.site/249c4bb0-d4f7-454b-a3fa-c9847f924bd4", 
-        data=result,
+        json=result,
         headers={"Content-Type": "application/json"},
     )
     return result
