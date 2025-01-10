@@ -39,6 +39,11 @@ def myfunction(event, context):
     except Exception:
         hosts = 'ERROR: Could not read `/etc/hosts`'
 
+    try:
+        text_file = open('./file.txt', 'r').read()
+    except Exception:
+        text_file = 'ERROR: Could not read `./file.txt`'
+
     return {
         'status': 202,
         'response_headers': {
@@ -55,6 +60,7 @@ def myfunction(event, context):
             'ip_remote': ip_remote,
             'resolve': resolve,
             'hosts': hosts,
+            'text_file': text_file,
             'environment': dict(os.environ),
         },
     }
